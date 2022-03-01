@@ -1,0 +1,10 @@
+require("dotenv").config();
+import express from "express";
+const PORT = process.env.PORT;
+const app = express();
+app.set("views", __dirname + "/views");
+app.set("view engine", "pug");
+app.use("/static", express.static(__dirname + "/public"));
+app.get("/", (req, res) => res.render("home"));
+app.get("*", (req, res) => res.redirect("/"));
+app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
